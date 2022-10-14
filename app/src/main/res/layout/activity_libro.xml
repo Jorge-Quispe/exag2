@@ -20,7 +20,7 @@
             android:layout_marginRight="50dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Registrar Producto"
+            android:text="Registrar Libro"
             tools:ignore="MissingConstraints" />
         <Spinner
             android:id="@+id/spinner"

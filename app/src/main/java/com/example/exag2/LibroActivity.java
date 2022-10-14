@@ -78,8 +78,28 @@ public class LibroActivity extends AppCompatActivity {
                 String clave = adapterView.getSelectedItem().toString();
                 int id = Integer.parseInt(clave.split(" ")[0]);
 
+                btnSave.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Libro p=new Libro();
+                        p.setTitulo(txtnombre.getText().toString());
+                        p.setAutor(txtautor.getText().toString());
+                        p.setPaginas(Integer.parseInt(txtpaginas.getText().toString()));
+                        p.setIdeditorial(id);
+                        if(ide.trim().length()==0||ide.equals("")){
+                            addLibro(p);
+                            Intent intent =new Intent(LibroActivity.this,MainActivity.class);
+                            startActivity(intent);
+                        }else{
+                            updateLibro(p,Integer.valueOf(ide));
+                            Intent intent =new Intent(LibroActivity.this,MainActivity.class);
+                            startActivity(intent);
+                        }
 
+                    }
+                });
                 Toast.makeText(getApplicationContext(), String.valueOf(id) , Toast.LENGTH_LONG).show();
+
 
             }
 
@@ -88,26 +108,7 @@ public class LibroActivity extends AppCompatActivity {
 
             }
         });
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Libro p=new Libro();
-                p.setNombre(txtnombre.getText().toString());
-                p.setAutor(txtautor.getText().toString());
-                
-                p.setPaginas(Integer.valueOf(txtautor.getText().toString()));
-                if(ide.trim().length()==0||ide.equals("")){
-                    addLibro(p);
-                    Intent intent =new Intent(LibroActivity.this,MainActivity.class);
-                    startActivity(intent);
-                }else{
-                    updateLibro(p,Integer.valueOf(ide));
-                    Intent intent =new Intent(LibroActivity.this,MainActivity.class);
-                    startActivity(intent);
-                }
 
-            }
-        });
         btnEliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
